@@ -1,0 +1,35 @@
+name: Release
+
+# `v1.4.1` のようなタグを push すると、配布用 zip をビルドして
+# GitHub Release に添付する。プラグインの自動更新はこの zip を参照する。
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build plugin zip
+        run: |
+          mkdir -p build/sheets-to-wp
+          rsync -a \
+            --exclude='.git*' \
+            --exclude='.github' \
+            --exclude='.claude' \
+            --exclude='.DS_Store' \
+            --exclude='build' \
+            ./ build/sheets-to-wp/
+          cd build && zip -rq sheets-to-wp.zip sheets-to-wp
+
+      - name: Create release and attach zip
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/sheets-to-wp.zip
+          generate_release_notes: true

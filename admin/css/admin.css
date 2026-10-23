@@ -1,0 +1,154 @@
+/* GS Dynamic Content Admin Styles */
+
+.gsdc-stats {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-top: 20px;
+}
+
+.gsdc-help {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-top: 20px;
+}
+
+.gsdc-help h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.gsdc-help h3 {
+    margin-top: 30px;
+    color: #1d2327;
+}
+
+.gsdc-help h4 {
+    margin-top: 20px;
+    color: #50575e;
+}
+
+.gsdc-help pre {
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 3px;
+}
+
+.gsdc-help code {
+    background: #f6f7f7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, monospace;
+}
+
+.gsdc-help pre code {
+    background: transparent;
+    padding: 0;
+}
+
+.gsdc-help ul {
+    margin-left: 20px;
+}
+
+.gsdc-help ol {
+    margin-left: 20px;
+}
+
+#gsdc_test_result {
+    margin-left: 10px;
+    font-weight: 600;
+    white-space: pre-wrap;
+}
+
+#gsdc_test_result.success {
+    color: #00a32a;
+}
+
+#gsdc_test_result.error {
+    color: #d63638;
+}
+
+#gsdc_toggle_api_key {
+    margin-left: 6px;
+}
+
+.gsdc-stats code {
+    background: #f6f7f7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, monospace;
+}
+
+.gsdc-refresh-cell {
+    padding: 0 8px !important;
+    line-height: 2 !important;
+    height: auto !important;
+}
+
+.gsdc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.gsdc-table th,
+.gsdc-table td {
+    border: 1px solid #dcdcde;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.gsdc-table th {
+    background: #f6f7f7;
+    font-weight: 600;
+}
+
+.gsdc-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Loading spinner */
+.gsdc-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #2271b1;
+    border-radius: 50%;
+    animation: gsdc-spin 1s linear infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+@keyframes gsdc-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notice styles */
+.gsdc-notice {
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-left: 4px solid;
+    background: #fff;
+}
+
+.gsdc-notice.success {
+    border-left-color: #00a32a;
+    background: #edfaef;
+}
+
+.gsdc-notice.error {
+    border-left-color: #d63638;
+    background: #fcf0f1;
+}
+
+.gsdc-notice.info {
+    border-left-color: #2271b1;
+    background: #f0f6fc;
+}
