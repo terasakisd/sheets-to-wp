@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sheets to WP
  * Description: Google スプレッドシートのセルを記事内に埋め込み、シート更新で全記事を自動更新
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: Mikuru Terasaki
  * License: GPL v2 or later
  * Text Domain: sheets-to-wp
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GSDC_VERSION', '1.4.1');
+define('GSDC_VERSION', '1.4.2');
 define('GSDC_PLUGIN_FILE', __FILE__);
 define('GSDC_PLUGIN_DIR',  plugin_dir_path(__FILE__));
 define('GSDC_PLUGIN_URL',  plugin_dir_url(__FILE__));
@@ -113,6 +113,24 @@ add_filter('widget_title',         'gsdc_resolve_tags_to_values', 9);
 add_filter('widget_text',          'gsdc_resolve_tags_to_values', 9);
 add_filter('widget_text_content',  'gsdc_resolve_tags_to_values', 9);
 add_filter('widget_block_content', 'gsdc_resolve_tags_to_values', 9);
+
+/**
+ * 最終出力のセーフティネット
+ *
+ * 診断ツール・関連記事カードなど、post_content や各フィルタを経由せず
+ * 独自に HTML を出力するプラグイン/テーマ機能に残った {{gs:...}} を、
+ * ページ全体の出力バッファ上で最後に解決する。
+ */
+function gsdc_buffer_start() {
+    if (is_admin()
+        || (defined('REST_REQUEST') && REST_REQUEST)
+        || (defined('DOING_AJAX') && DOING_AJAX)
+        || (defined('XMLRPC_REQUEST') && XMLRPC_REQUEST)) {
+        return;
+    }
+    ob_start('gsdc_resolve_tags_to_values');
+}
+add_action('template_redirect', 'gsdc_buffer_start', 1);
 
 /**
  * テーマが post_content から直接抜粋を生成する場合への対応
